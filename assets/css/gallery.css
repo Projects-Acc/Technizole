@@ -1,87 +1,76 @@
-/* Gallery Specific Styles */
-
-/* Main gallery section title */
-.gallery-title { /* New class for the gallery heading */
+.gallery-title {
   text-align: center;
   font-size: 2.5rem;
   font-weight: 700;
   color: #333;
-  margin: 40px 0 30px; /* Adjusted margins for better spacing */
+  margin: 40px 0 30px;
 }
 
-/* Slideshow container */
 .slideshow-container {
   max-width: 1000px;
   position: relative;
-  margin: 0 auto 50px; /* Centered with bottom margin */
+  margin: 0 auto 50px;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
-/* Images within slideshow */
 .slideshow-container img {
   vertical-align: middle;
   width: 100%;
-  height: auto; /* Allow height to adjust */
-  max-height: 550px; /* Max height for larger screens */
-  object-fit: contain; /* Ensure entire image is visible, no cropping */
-  display: block; /* Removes extra space below images */
+  height: auto;
+  max-height: 550px;
+  object-fit: contain;
+  display: block;
 }
 
-/* Hide all slides by default */
 .mySlides1, .mySlides2, .mySlides3 {
   display: none;
 }
 
-/* Navigation buttons (Prev/Next) */
 .prev, .next {
   cursor: pointer;
   position: absolute;
   top: 50%;
   width: auto;
-  padding: 18px 22px; /* Increased padding for larger clickable area */
+  padding: 18px 22px;
   margin-top: -22px;
-  color: #fff; /* White arrows */
+  color: #fff;
   font-weight: bold;
-  font-size: 24px; /* Larger arrows */
+  font-size: 24px;
   transition: background-color 0.3s ease;
-  border-radius: 0 5px 5px 0; /* Rounded corners */
-  user-select: none; /* Prevent text selection */
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  border-radius: 0 5px 5px 0;
+  user-select: none;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* Position the "next button" to the right */
 .next {
   right: 0;
-  border-radius: 5px 0 0 5px; /* Rounded corners for right button */
+  border-radius: 5px 0 0 5px;
 }
 
-/* On hover, add a black background with a little more opacity */
 .prev:hover, .next:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-/* Video Section */
 .videos {
-  display: grid; /* Use CSS Grid for video layout */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
-  gap: 30px; /* Space between videos */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
   padding: 20px;
   max-width: 1200px;
-  margin: 0 auto 50px; /* Centered with bottom margin */
+  margin: 0 auto 50px;
 }
 
 .videos video {
   width: 100%;
   height: auto;
-  min-height: 200px; /* Minimum height for videos */
-  background-color: #000; /* Black background for video player */
+  min-height: 200px;
+  background-color: #000;
   border-radius: 10px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive Design for Gallery */
 @media (max-width: 768px) {
   .gallery-title {
     font-size: 2rem;
@@ -89,7 +78,7 @@
   }
 
   .slideshow-container {
-    max-width: 90%; /* Adjust width for smaller screens */
+    max-width: 90%;
   }
 
   .prev, .next {
@@ -98,7 +87,7 @@
   }
 
   .videos {
-    grid-template-columns: 1fr; /* Stack videos on smaller screens */
+    grid-template-columns: 1fr;
     gap: 20px;
     padding: 15px;
   }
@@ -110,7 +99,7 @@
 
 @media (max-width: 480px) {
   .slideshow-container {
-    border-radius: 0; /* Remove border radius on very small screens for full width */
+    border-radius: 0;
   }
 
   .videos {

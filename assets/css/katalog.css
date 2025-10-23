@@ -1,71 +1,60 @@
-/* Katalog Specific Styles */
-
-/* Remove any duplicate global styles if they were here */
-/* (e.g., *, body, a - these are now in style.css) */
-
-/* Main catalog section heading */
-.catalog-title { /* Changed from .catalog to .catalog-title for clarity and less conflict */
+.catalog-title {
   text-align: center;
   font-size: 2.5rem;
   font-weight: 700;
   color: #333;
-  margin: 40px 0 30px; /* Adjusted margins for better spacing */
+  margin: 40px 0 30px;
 }
 
-/* Container for catalog items */
 .catalog-grid {
-  display: grid; /* Use CSS Grid for a powerful and flexible layout */
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid columns */
-  gap: 30px; /* Space between grid items */
-  padding: 0 20px; /* Padding for the grid */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 0 20px;
   max-width: 1200px;
-  margin: 0 auto 50px; /* Center the grid and add bottom margin */
+  margin: 0 auto 50px;
 }
 
-/* Individual catalog item (product card) */
-.catalog-item { /* New class for each product block */
+.catalog-item {
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); /* More prominent shadow */
-  overflow: hidden; /* Ensures border-radius applies to image */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
   display: flex;
-  flex-direction: column; /* Stack image and text vertically */
-  align-items: center; /* Center content within the card */
-  padding-bottom: 20px; /* Padding at the bottom of the card */
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 20px;
   transition: transform 0.3s ease-in-out;
 }
 
 .catalog-item:hover {
-  transform: translateY(-5px); /* Lift effect on hover */
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* Images within catalog items */
 .catalog-item .img1 {
   display: block;
-  width: 100%; /* Make image fill its container */
-  height: 250px; /* Fixed height for consistency, adjust as needed */
-  object-fit: cover; /* Crop image to fit without distortion */
-  border-radius: 10px 10px 0 0; /* Apply border-radius only to top corners */
-  margin-bottom: 15px; /* Space between image and text */
-  box-shadow: none; /* Remove individual image shadow as card has one */
-  transition: none; /* Remove individual image transition as card has one */
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 15px;
+  box-shadow: none;
+  transition: none;
 }
 
-/* Text styling for product descriptions */
 .catalog-item .text {
-  font-size: 1.1rem; /* Reduced font size for better readability */
+  font-size: 1.1rem;
   line-height: 1.5;
-  color: #555; /* Softer color for text */
+  color: #555;
   text-align: center;
-  padding: 0 15px; /* Padding for text inside the card */
-  margin-bottom: 10px; /* Spacing between text lines/blocks */
+  padding: 0 15px;
+  margin-bottom: 10px;
 }
 
-/* Responsive adjustments for catalog */
 @media (max-width: 768px) {
   .catalog-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust min-width for smaller screens */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
   }
 
@@ -75,7 +64,7 @@
   }
 
   .catalog-item .img1 {
-    height: 200px; /* Smaller image height on mobile */
+    height: 200px;
   }
 
   .catalog-item .text {
@@ -85,7 +74,7 @@
 
 @media (max-width: 480px) {
   .catalog-grid {
-    grid-template-columns: 1fr; /* Single column on very small screens */
+    grid-template-columns: 1fr;
     padding: 0 15px;
   }
 
