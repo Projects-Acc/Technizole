@@ -25,7 +25,8 @@
 </header>
 
 <div class="container">
-    <h1 class="gallery-title">ՊԱՏԿԵՐԱՍՐԱՀ</h1> <div class="slideshow-container">
+    <h1 class="gallery-title">ՊԱՏԿԵՐԱՍՐԱՀ</h1>
+    <div class="slideshow-container">
         <div class="mySlides1">
             <img src="assets/img/1.jpg" alt="Gallery Image 1">
         </div>
@@ -44,10 +45,8 @@
 
     <script>
         let slideIndex = [1,1,1];
-        let slideId = ["mySlides1", "mySlides2", "mySlides3"]
+        let slideId = ["mySlides1", "mySlides2", "mySlides3"];
         showSlides(1, 0);
-        showSlides(1, 1);
-        showSlides(1, 2);
 
         function plusSlides(n, no) {
             showSlides(slideIndex[no] += n, no);
