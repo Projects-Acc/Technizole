@@ -27,40 +27,149 @@
 <div class="container">
     <h1 class="gallery-title">ГАЛЕРЕЯ</h1>
     <div class="slideshow-container">
-        <div class="mySlides1">
+        <div class="mySlides1 fade">
             <img src="assets/img/1.jpg" alt="Gallery Image 1">
         </div>
-        <div class="mySlides1">
+        <div class="mySlides1 fade">
             <img src="assets/img/2.jpg" alt="Gallery Image 2">
         </div>
-        <div class="mySlides1">
+        <div class="mySlides1 fade">
             <img src="assets/img/3.jpg" alt="Gallery Image 3">
         </div>
-        <div class="mySlides1">
+        <div class="mySlides1 fade">
             <img src="assets/img/4.jpg" alt="Gallery Image 4">
         </div>
         <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
         <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
     </div>
+    <div class="slide-indicators">
+        <span class="dot active" onclick="currentSlide(1, 0)"></span>
+        <span class="dot" onclick="currentSlide(2, 0)"></span>
+        <span class="dot" onclick="currentSlide(3, 0)"></span>
+        <span class="dot" onclick="currentSlide(4, 0)"></span>
+    </div>
 
     <script>
         let slideIndex = [1,1,1];
         let slideId = ["mySlides1", "mySlides2", "mySlides3"];
-        showSlides(1, 0);
+        let autoSlideInterval;
+        const slideDelay = 5000; // 5 seconds
 
         function plusSlides(n, no) {
+            clearAutoSlide();
             showSlides(slideIndex[no] += n, no);
+            startAutoSlide(no);
+        }
+
+        function currentSlide(n, no) {
+            clearAutoSlide();
+            showSlides(slideIndex[no] = n, no);
+            startAutoSlide(no);
         }
 
         function showSlides(n, no) {
             let i;
             let x = document.getElementsByClassName(slideId[no]);
+            let dots = document.getElementsByClassName("dot");
+            
             if (n > x.length) {slideIndex[no] = 1}
             if (n < 1) {slideIndex[no] = x.length}
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
+            
+            let currentSlideEl = x[slideIndex[no]-1];
+            
+            // If already showing this slide, skip
+            if (currentSlideEl && currentSlideEl.style.display === "block" && parseFloat(currentSlideEl.style.opacity) === 1) {
+                return;
             }
-            x[slideIndex[no]-1].style.display = "block";
+            
+            // Hide all slides with fade out
+            for (i = 0; i < x.length; i++) {
+                if (x[i].style.display === "block") {
+                    x[i].style.opacity = "0";
+                }
+            }
+            
+            // After fade out completes, hide and show new slide
+            setTimeout(function() {
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";
+                }
+                // Show current slide
+                if (currentSlideEl) {
+                    currentSlideEl.style.display = "block";
+                    // Trigger reflow for smooth transition
+                    void currentSlideEl.offsetHeight;
+                    // Fade in
+                    currentSlideEl.style.opacity = "1";
+                }
+            }, 300);
+            
+            // Update dots immediately
+            for (i = 0; i < dots.length; i++) {
+                dots[i].classList.remove("active");
+            }
+            if (dots[slideIndex[no]-1]) {
+                dots[slideIndex[no]-1].classList.add("active");
+            }
+        }
+
+        function startAutoSlide(no) {
+            clearAutoSlide();
+            autoSlideInterval = setInterval(function() {
+                slideIndex[no]++;
+                let x = document.getElementsByClassName(slideId[no]);
+                if (slideIndex[no] > x.length) {slideIndex[no] = 1}
+                showSlides(slideIndex[no], no);
+            }, slideDelay);
+        }
+
+        function clearAutoSlide() {
+            if (autoSlideInterval) {
+                clearInterval(autoSlideInterval);
+                autoSlideInterval = null;
+            }
+        }
+
+        // Initialize slideshow - show first slide immediately
+        function initializeSlideshow() {
+            let x = document.getElementsByClassName(slideId[0]);
+            let dots = document.getElementsByClassName("dot");
+            if (x.length > 0) {
+                x[0].style.display = "block";
+                x[0].style.opacity = "1";
+            }
+            if (dots.length > 0) {
+                dots[0].classList.add("active");
+            }
+        }
+        
+        // Initialize on load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                initializeSlideshow();
+                startAutoSlide(0);
+                
+                // Pause auto-slide on hover
+                const container = document.querySelector('.slideshow-container');
+                if (container) {
+                    container.addEventListener('mouseenter', clearAutoSlide);
+                    container.addEventListener('mouseleave', function() {
+                        startAutoSlide(0);
+                    });
+                }
+            });
+        } else {
+            initializeSlideshow();
+            startAutoSlide(0);
+            
+            // Pause auto-slide on hover
+            const container = document.querySelector('.slideshow-container');
+            if (container) {
+                container.addEventListener('mouseenter', clearAutoSlide);
+                container.addEventListener('mouseleave', function() {
+                    startAutoSlide(0);
+                });
+            }
         }
     </script>
 
